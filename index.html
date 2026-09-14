@@ -583,9 +583,12 @@ window.addEventListener('load',function(){
 </head>
 <body>
 <style>
-.mobile-blocker{position:fixed;top:0;left:0;width:100%;height:100%;background:#080c14;z-index:999999;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box}
-.mobile-blocker-card{background:rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.15);border-radius:24px;padding:36px 28px;max-width:380px;width:100%;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.5);color:#f1f5f9;font-family:'Microsoft YaHei','PingFang SC','Segoe UI',sans-serif}
-.mobile-blocker-icon{width:64px;height:64px;margin:0 auto 20px;border-radius:20px;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);display:flex;align-items:center;justify-content:center;color:#34d399}
+/* Mobile blocker - performance optimized, glass kept */
+html.mobile-locked,html.mobile-locked body{overflow:hidden!important;height:100%!important;width:100%!important;position:fixed!important;margin:0!important;padding:0!important;touch-action:none!important;-webkit-overflow-scrolling:auto!important}
+html.mobile-locked body>*:not(.mobile-blocker){display:none!important;visibility:hidden!important;pointer-events:none!important;opacity:0!important}
+.mobile-blocker{position:fixed;inset:0;width:100%;height:100%;min-height:100vh;min-height:100dvh;background:#080c14;z-index:999999;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;padding:24px;box-sizing:border-box;overflow:hidden;-webkit-transform:translateZ(0);transform:translateZ(0);will-change:transform;contain:strict;-webkit-user-select:none;user-select:none;touch-action:none}
+.mobile-blocker-card{background:rgba(255,255,255,.08);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);border:1px solid rgba(255,255,255,.15);border-radius:24px;padding:36px 28px;max-width:380px;width:100%;text-align:center;-webkit-box-shadow:0 20px 50px rgba(0,0,0,.5);box-shadow:0 20px 50px rgba(0,0,0,.5);color:#f1f5f9;font-family:'Microsoft YaHei','PingFang SC','Segoe UI',sans-serif;-webkit-transform:translateZ(0);transform:translateZ(0);will-change:transform;contain:layout style paint}
+.mobile-blocker-icon{width:64px;height:64px;margin:0 auto 20px;border-radius:20px;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#34d399;-webkit-transform:translateZ(0);transform:translateZ(0)}
 .mobile-blocker-title{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-.01em;color:#f1f5f9}
 .mobile-blocker-desc{font-size:14px;color:#94a3b8;line-height:1.7;margin-bottom:24px}
 .mobile-blocker-badge{display:inline-block;padding:6px 14px;border-radius:30px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);color:#fbbf24;font-size:12px;font-weight:600;margin-bottom:16px}
@@ -594,10 +597,36 @@ window.addEventListener('load',function(){
 <script>
 (function(){
   var ua=navigator.userAgent||'';
-  var isMobile=/Android|iPhone|iPad|iPod|Mobile|webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua)||window.innerWidth<=768;
-  if(isMobile){
-    document.write('<div class="mobile-blocker"><div class="mobile-blocker-card"><div class="mobile-blocker-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="mobile-blocker-badge">访问受限提示</div><div class="mobile-blocker-title">此网站仅限 PC 端访问</div><p class="mobile-blocker-desc">请切换到 PC 端浏览器进行访问。</p><div class="mobile-blocker-footer">FireflyOS &bull; DomeOS Team</div></div></div>');
+  var isMobile=/Android|iPhone|iPad|iPod|Mobile|webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua)||(window.innerWidth&&window.innerWidth<=768);
+  if(!isMobile)return;
+  document.documentElement.className=(document.documentElement.className?document.documentElement.className+' ':'')+'mobile-locked';
+  try{document.documentElement.style.cssText='overflow:hidden!important;height:100%!important;width:100%!important;position:fixed!important';}catch(e){}
+  try{if(document.body){document.body.style.cssText='overflow:hidden!important;height:100%!important;width:100%!important;position:fixed!important;margin:0!important;padding:0!important;touch-action:none!important';}}catch(e){}
+  document.write('<div class="mobile-blocker" id="mobileBlocker"><div class="mobile-blocker-card"><div class="mobile-blocker-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="mobile-blocker-badge">访问受限提示</div><div class="mobile-blocker-title">此网站仅限 PC 端访问</div><p class="mobile-blocker-desc">请切换到 PC 端浏览器进行访问。</p><div class="mobile-blocker-footer">FireflyOS &bull; DomeOS Team</div></div></div>');
+  // Hide any content that still gets parsed after this point
+  function lockPage(){
+    try{
+      var b=document.body;if(!b)return;
+      b.style.cssText='overflow:hidden!important;height:100%!important;width:100%!important;position:fixed!important;margin:0!important;padding:0!important;touch-action:none!important';
+      var kids=b.children;
+      for(var i=0;i<kids.length;i++){
+        if(kids[i].id!=='mobileBlocker'&&!kids[i].classList.contains('mobile-blocker')){
+          kids[i].style.cssText='display:none!important;visibility:hidden!important;pointer-events:none!important;opacity:0!important';
+        }
+      }
+    }catch(e){}
   }
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',lockPage);
+  }else{lockPage();}
+  // Stop further heavy work where possible
+  try{window.stop&&window.stop();}catch(e){}
+  // Prevent scroll / touch move
+  function blockScroll(e){e.preventDefault();}
+  try{
+    document.addEventListener('touchmove',blockScroll,{passive:false});
+    document.addEventListener('scroll',blockScroll,{passive:false});
+  }catch(e){}
 })();
 </script>
 <script>/* IE detection - must run before any other code */
