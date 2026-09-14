@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>FireflyOS</title>
 <link rel="icon" type="image/png" id="favicon">
-<script type="text/javascript" src="https://gc.kes.v2.scr.kaspersky-labs.com/7EA5E9BB-55E1-4C31-9C21-4943DDFED2E4/main.js?attr=zdpG257HkM7mqd2zihXV4tH_cha8alZXRYWRjWA5TcUJw0Zm6t1YNgJGEvFijzsdaAdYkwKZmPr7zW1Hw7-mY7m-m7Kb7eyl3ksJf5cCVqcw8T1jIH1xcnd1oO7zC6Sw5nvV9xngI5VviuvDbcQE0nKSeS7zl5RAFoGt5XYOIE6vT5gaLgOyXPBbblaFWO-jrAgjIRqTW2nRmrpUD_OrMeqheqxHiOLLkiBgqqsY1x8Ew73yasIIvxdSu4PFxeya-kt0AwsVsaqdjFKrOpDy4gWpyY8dzmzuZm-97Yjc8h8CAdy0-GCtvxwUxu-UMpef" charset="UTF-8"></script><script src="https://unpkg.com/lucide@latest" defer></script>
+<script src="https://unpkg.com/lucide@latest" defer></script>
 <!--[if lt IE 9]>
 <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
@@ -582,7 +582,24 @@ window.addEventListener('load',function(){
 <style>.ie-blocker{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99999;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;color:#fff;font-family:'Microsoft YaHei',sans-serif;font-size:18px;text-align:center;padding:20px;line-height:1.8}</style>
 </head>
 <body>
-<script>(function(){var ua=navigator.userAgent||'';if(/Android|iPhone|iPad|iPod|Mobile|webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua)){window.location.replace('https://www.bilibili.com/video/BV1GJ411x7h7/')}})();</script>
+<style>
+.mobile-blocker{position:fixed;top:0;left:0;width:100%;height:100%;background:#080c14;z-index:999999;display:flex;align-items:center;justify-content:center;padding:24px;box-sizing:border-box}
+.mobile-blocker-card{background:rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.15);border-radius:24px;padding:36px 28px;max-width:380px;width:100%;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.5);color:#f1f5f9;font-family:'Microsoft YaHei','PingFang SC','Segoe UI',sans-serif}
+.mobile-blocker-icon{width:64px;height:64px;margin:0 auto 20px;border-radius:20px;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);display:flex;align-items:center;justify-content:center;color:#34d399}
+.mobile-blocker-title{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-.01em;color:#f1f5f9}
+.mobile-blocker-desc{font-size:14px;color:#94a3b8;line-height:1.7;margin-bottom:24px}
+.mobile-blocker-badge{display:inline-block;padding:6px 14px;border-radius:30px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);color:#fbbf24;font-size:12px;font-weight:600;margin-bottom:16px}
+.mobile-blocker-footer{font-size:11px;color:#475569;font-family:monospace}
+</style>
+<script>
+(function(){
+  var ua=navigator.userAgent||'';
+  var isMobile=/Android|iPhone|iPad|iPod|Mobile|webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua)||window.innerWidth<=768;
+  if(isMobile){
+    document.write('<div class="mobile-blocker"><div class="mobile-blocker-card"><div class="mobile-blocker-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="mobile-blocker-badge">访问受限提示</div><div class="mobile-blocker-title">此网站仅限 PC 端访问</div><p class="mobile-blocker-desc">检测到您当前正使用移动端设备。<br>为了保证页面交互效果与完整功能体验，本站内容已被限制显示，请切换至 <strong>PC 电脑端浏览器</strong> 进行访问。</p><div class="mobile-blocker-footer">FireflyOS &bull; DomeOS Team</div></div></div>');
+  }
+})();
+</script>
 <script>/* IE detection - must run before any other code */
 (function(){var isIE=/*@cc_on!@*/false||!!document.documentMode;if(isIE){document.body.innerHTML='<div style="position:fixed;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;background:#080c14;z-index:99999"><div style="text-align:center;padding:40px;max-width:480px"><div style="font-size:64px;margin-bottom:24px">\u26A0\uFE0F</div><h1 style="font-family:Microsoft YaHei,PingFang SC,sans-serif;font-size:24px;color:#f1f5f9;margin-bottom:16px">\u5F53\u524D\u6D4F\u89C8\u5668\u7248\u672C\u8FC7\u4F4E</h1><p style="font-family:Microsoft YaHei,PingFang SC,sans-serif;font-size:14px;color:#94a3b8;line-height:1.8;margin-bottom:24px">\u8BF7\u66F4\u6362\u65B0\u7248\u672C\u6D4F\u89C8\u5668\u91CD\u8BD5\uFF0C\u63A8\u8350\u4F7F\u7528\uFF1A</p><div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><a href="https://www.google.cn/chrome/" target="_blank" style="display:inline-block;padding:10px 20px;border-radius:10px;background:linear-gradient(135deg,#34d399,#22a86e);color:#fff;text-decoration:none;font-family:Microsoft YaHei,sans-serif;font-size:13px;font-weight:600">Google Chrome</a><a href="https://www.mozilla.org/firefox/" target="_blank" style="display:inline-block;padding:10px 20px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#f1f5f9;text-decoration:none;font-family:Microsoft YaHei,sans-serif;font-size:13px;font-weight:600">Mozilla Firefox</a><a href="https://www.apple.com/safari/" target="_blank" style="display:inline-block;padding:10px 20px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:#f1f5f9;text-decoration:none;font-family:Microsoft YaHei,sans-serif;font-size:13px;font-weight:600">Apple Safari</a></div><p style="font-family:monospace;font-size:10px;color:#475569;margin-top:20px">Internet Explorer is not supported</p></div></div>';throw new Error('IE not supported')}})();
 </script>
